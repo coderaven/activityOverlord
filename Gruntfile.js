@@ -16,7 +16,7 @@
 
 module.exports = function (grunt) {
 
-
+  'use strict';
 
   /**
    * CSS files to inject in order
@@ -57,9 +57,11 @@ module.exports = function (grunt) {
     'linker/js/app.js',
 
     // *->    put other dependencies here   <-*
+    'linker/js/bootstrap.js',
 
     // All of the rest of your app scripts imported here
-    'linker/**/*.js'
+    'linker/**/*.js',
+    'linker/js/custom.js',
   ];
 
 
