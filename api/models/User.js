@@ -41,7 +41,7 @@ module.exports = {
     // Para dli makita sa api na json na gina return
     // ang parts nga private dapat or sensitive,
     // We need to override the toJSON function
-    //
+    
     // toJSON: function(){
     //   var obj = this.toObject();
     //   delete obj.password;
@@ -50,7 +50,20 @@ module.exports = {
     //   delete obj._csrf;
     //   return obj;
     // },
-    
+  },
+
+  beforeCreate: function(values, next){
+    // This checks to make sure the password and pass confirmation match before creating a record
+    if (!values.password || values.password != values.confirmation){
+      return next({err: ["Password doesn't match password confirmation."]});
+    }
+
+    require('bcryptjs').hash(values.password, 10, function passwordEncrypted(err, encryptedPassword){
+      if (err) return next(err);
+      values.encryptedPassword = encryptedPassword;
+      values.online = true;
+      next();
+    });
   }
 
 };

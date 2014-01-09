@@ -9,7 +9,8 @@
     "sails-disk": "~0.9.0",
     "ejs": "0.8.4",
     "optimist": "0.3.4",
-    "sails-mysql": "~0.9.7"
+    "sails-mysql": "~0.9.7",
+    "bcryptjs": "~0.7.10"
   },
   "scripts": {
     "start": "node app.js",
