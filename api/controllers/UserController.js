@@ -78,7 +78,7 @@ module.exports = {
   },
 
   edit: function(req, res, next) {
-  	// Findthe user from the id passed in via params
+  	// Find the user from the id passed in via params
   	User.findOne(req.param('id'), function foundUser(err, user){
   		if (err) return next(err);
   		if (!user) return next();
