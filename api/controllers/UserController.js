@@ -18,7 +18,13 @@
 module.exports = {
     
   'new': function (req, res){
+  	res.locals.flash = _.clone(req.session.flash);
   	res.view();
+
+  	// Para dili mag balik2x ang flash message and
+  	// once lang mag show, we need to set the flash
+  	// message to be empty
+  	req.session.flash = {};
   },
 
   create: function(req, res, next){
@@ -27,12 +33,23 @@ module.exports = {
   	User.create(req.params.all(), function userCreated(err, user){
   		// If there's an error
   		if (err) {
-  			return next(err);
+  			console.log(err);
+  			req.session.flash = {
+  				err: err
+  			};
+
+  			// Redirect to user/new on error
+  			return res.redirect('/user/new');
   		}
 
   		// If successfully creating the user
   		// redirect to the show action
   		res.json(user);
+
+  		// Para dili mag balik2x ang flash message and
+	  	// once lang mag show, we need to set the flash
+	  	// message to be empty
+	  	req.session.flash = {};
   	});
   },
 
