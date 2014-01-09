@@ -3,29 +3,32 @@
 
         <% if(flash && flash.err) { %>
            <ul class="alert alert-danger">
-                <% Object.keys(flash.err).forEach(function(error){ %>
+                <!-- <% Object.keys(flash.err).forEach(function(error){ %>
                   <li> <%- JSON.stringify(flash.err[error]) %> </li>
-                <% }) %>
+                <% }) %>  -->
+                <p>There has been an error, please try again!</p>
            </ul>
         <% } %>
 
         <div class="control-group">
-        <input type="text" class="form-control" placeholder="your name" name="name">
+                <input type="text" class="form-control" placeholder="your name" name="name" required>
         </div>
 
         <div class="control-group">
-        <input type="text" class="form-control" placeholder="your title" name="title">
+                <input type="text" class="form-control" placeholder="your title" name="title">
         </div>
         
         <div class="control-group">
-        <input type="text" class="form-control" placeholder="email address" name="email">
+                <input type="text" class="form-control" placeholder="email address" name="email" data-validation-matches-match="email"
+                data-validation-matches-message="Must match email address entered above"  
+                required>
         </div>
 
         <div class="control-group">
-        <input type="password" class="form-control" placeholder="password" name="password" id="password">
+                <input type="password" class="form-control" placeholder="password" name="password" id="password" required>
         </div>
         <div class="control-group">
-        <input type="password" class="form-control" placeholder="password confirmation" name="confirmation">
+                <input type="password" class="form-control" placeholder="password confirmation" name="confirmation" required>
         <br />
         </div>
 

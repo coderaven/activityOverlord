@@ -18,13 +18,13 @@
 module.exports = {
     
   'new': function (req, res){
-  	res.locals.flash = _.clone(req.session.flash);
+  	// res.locals.flash = _.clone(req.session.flash); // commented ky naa nay policy
   	res.view();
 
   	// Para dili mag balik2x ang flash message and
   	// once lang mag show, we need to set the flash
   	// message to be empty
-  	req.session.flash = {};
+  	// req.session.flash = {}; // Commented ky nagbutang naman tag policy para ani
   },
 
   create: function(req, res, next){
@@ -49,7 +49,7 @@ module.exports = {
   		// Para dili mag balik2x ang flash message and
 	  	// once lang mag show, we need to set the flash
 	  	// message to be empty
-	  	req.session.flash = {};
+	  	//req.session.flash = {}; // commented ky naa nay policy
   	});
   },
 
