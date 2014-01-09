@@ -44,12 +44,25 @@ module.exports = {
 
   		// If successfully creating the user
   		// redirect to the show action
-  		res.json(user);
+  		// res.json(user);
+
+  		res.redirect('/user/show/' + user.id);
 
   		// Para dili mag balik2x ang flash message and
 	  	// once lang mag show, we need to set the flash
 	  	// message to be empty
 	  	//req.session.flash = {}; // commented ky naa nay policy
+  	});
+  },
+
+  // render the profile view (e.g. /views/show.ejs)
+  show: function(req, res, next) {
+  	User.findOne(req.param('id'), function foundUser(err, user){
+  		if (err) return next(err);
+  		if (!user) return next();
+  		res.view({
+  			user: user
+  		});
   	});
   },
 
