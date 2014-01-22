@@ -42,6 +42,16 @@
           <li><a href="/" data-link="ajax">Home</a></li>
           <li><a href="/user" data-link="ajax">Users</a></li>
           <li><a href="/user/new" data-link="ajax">Signup</a></li>
+          <li>
+              <form id="searchbar" action="/user/search" method="POST" class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search" name="searchfor" id="searchfor">
+                  </div>
+                  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
+                  </button>
+              </form>
+          </li>
         </ul>
       </div>
     </nav>
