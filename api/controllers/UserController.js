@@ -98,7 +98,7 @@ module.exports = {
         if (err) return next(err);
         if (!users) return next("No user has been found!");
 
-        res.view({
+        res.view('user/index',{ // If you won't specify, it will default to user/search or the same name
             users: users
         });
     });

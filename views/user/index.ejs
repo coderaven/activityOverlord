@@ -1,4 +1,7 @@
 <div class="container">
+    <% if(typeof users[0] === 'undefined') { %>
+        <h3>No Users found!</h3>
+    <% } else { %>
 	<h3>Users</h3>
 	<table class="table">
 		<tr>
@@ -27,8 +30,9 @@
 				</form>
 			</td>
 
-			<!-- <td><a href="/user/destroy/<%= user.id %>" class="btn btn-sm btn-danger">Delete</a></td> -->
+			 <!--<td><a href="/user/destroy/<%= user.id %>" class="btn btn-sm btn-danger">Delete</a></td> -->
 		</tr>
 		<% }) %>
 	</table>
+    <% } %>
 </div>
