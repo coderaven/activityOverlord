@@ -89,6 +89,21 @@ module.exports = {
   	});
   },
 
+  search: function(req, res, next){
+    if (req.param('searchfor') == undefined){
+        return res.redirect('404');
+    }
+
+    User.findLike( { name: req.param('searchfor') }, function foundUsers(err, users){
+        if (err) return next(err);
+        if (!users) return next("No user has been found!");
+
+        res.view({
+            users: users
+        });
+    });
+  },
+
   update: function(req, res, next) {
   	User.update(req.param('id'), req.params.all(), function userUpdated(err){
   		if (err) return res.redirect('/user/edit/' + req.param('id'));

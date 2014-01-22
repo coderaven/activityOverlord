@@ -11,6 +11,9 @@ This application uses some particular modules:
 - sails-mysql (for SailsJs MySql adapter)
 - bcryptjs (for encrypting passwords)
 
-to install locally just: npm install <name-of-module>
+to install locally just: npm install
+
+Lastly, be sure to add your own local.js file in the config folder.
+Local.js file is not committed by default. (Put your credentials and important local details there e.g. adapters)
 
 >>>>>>> 17167831de419066aa38c2112961aee3ca654aa6
