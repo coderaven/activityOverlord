@@ -17,7 +17,7 @@
 
 module.exports = {
     
-  'new': function (req, res){
+  'new': function(req, res){
   	// res.locals.flash = _.clone(req.session.flash); // commented ky naa nay policy
   	res.view();
 
