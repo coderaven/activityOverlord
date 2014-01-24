@@ -39,20 +39,32 @@
         <a class="navbar-brand" href="/">Activity Overlord</a>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/" data-link="ajax">Home</a></li>
-          <li><a href="/user" data-link="ajax">Users</a></li>
-          <li><a href="/user/new" data-link="ajax">Signup</a></li>
-          <li><a href="/session/new" data-link="ajax">Login</a></li>
-          <li>
-              <form id="searchbar" action="/user/search" method="POST" class="navbar-form navbar-left" role="search">
-                  <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Search" name="searchfor" id="searchfor">
-                  </div>
-                  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
-                  <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
-                  </button>
-              </form>
-          </li>
+          <% if (session.authenticated) { %>
+            <li><a href="/user" data-link="ajax">Users</a></li>
+            <li><a href="/user/show/<%= session.User.id %>" data-link="ajax">Profile</a></li>
+            <li><a href="/session/destroy" data-link="ajax">Logout</a></li>
+            <li>
+                <form id="searchbar" action="/user/search" method="POST" class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" name="searchfor" id="searchfor">
+                    </div>
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </form>
+            </li>
+          <% } else { %>
+            <form class="navbar-form navbar-right" action="/session/create">
+                <div class="form-group">
+                    <input type="text" placeholder="Email" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" name="password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Sign in</button>
+                <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            </form>
+          <% } %>
         </ul>
       </div>
     </nav>
