@@ -71,7 +71,13 @@ module.exports = {
               req.session.authenticated = true;
               req.session.User = user;
 
-              // Redirect to profile page
+              // Redirect to administration page if admin
+              if (req.session.User.admin){
+                  res.redirect('/user');
+                  return;
+              }
+
+              // Redirect to profile page if normal user
               res.redirect('/user/show/' + user.id);
           });
       });
@@ -80,7 +86,7 @@ module.exports = {
   destroy: function(req, res, next){
       // Wipe out all session variables (logout)
       req.session.destroy();
-      res.redirect('/session/new');
+      res.redirect('/');
   },
 
 
